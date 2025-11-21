@@ -3,9 +3,9 @@ from fastapi.responses import RedirectResponse
 
 from sqlalchemy.orm import Session
 
-from app.db import get_db
-from app.schemas.url_schema import URLCreate, URLResponse
-from app.services.url_service import URLService
+from ..db import get_db
+from ..schemas.url_schema import URLCreate, URLResponse
+from ..services.url_service import URLService
 
 router = APIRouter()
 
@@ -22,6 +22,7 @@ def create_short_url(payload: URLCreate, request: Request, db: Session = Depends
         "short_url": f"{base_url}/{created.slug}",
         "target_url": created.target_url,
     }
+
 
 @router.get("/{slug}")
 def redirect(slug: str, db: Session = Depends(get_db)):

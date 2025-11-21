@@ -1,14 +1,7 @@
-import string
-from secrets import choice
 from sqlalchemy.orm import Session
 
-from app.repositories.url_repo import URLRepository
-
-alphabet = string.ascii_letters + string.digits
-
-def generate_slug(length: int = 6) -> str:
-    return "".join(choice(alphabet) for _ in range(length))
-
+from .utils import generate_slug
+from ..repositories.url_repo import URLRepository
 
 class URLService:
     @staticmethod
